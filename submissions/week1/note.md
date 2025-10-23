@@ -1,55 +1,157 @@
-here is what i lean in the fundamental of Bitcoin network and how to setup a the local developmet
+So I start off here
 
+### Step 1
 
- 1. I Startup deamon and getblockchaininfo:
-/home/whiteghost/rust-for-bitcoin-program/submissions/week1/Screenshot from 2025-10-19 16-03-46.png
+Verified Node setup
 
-2. move t0 the folder and open it true terminal.
+![alt text](<Step-1.png>)
 
+Created new test wallet first So i could generate blocks to new address (Method had been updated so wallet has to be made manually)
 
- 3. GenrateBlocks:
+"name": "deesfinalstraw"
 
-4. Inspect blocks:
+Generated New address
+bcrt1qey7m0qkgmjh7swu5r22mlkc4j22n3fzvd5g4kg
 
-5. Multiple wallets and addresses:
-
-
-6. Send and Track Transactions:
-
-
-7. Inspect UTXOs:
-
-8. Decode a Raw Transaction:
 ```
 
-"chain": "regtest",
-"blocks": 0,
-"headers": 0,
-"bestblockhash": *0F9188f13cb762c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
-"difficulty": 4.656542373906925e-10,
-"tine": 1296688602, nediantine": 1296688602,
-"verificationprogress": 1,
-"inttialblockdownload": true,
-*chatnwork": *0000000000000000000000000000000000000000002,
-"size_on_disk": 293,
-"pruned": false,
-"warnings": [
-]
-whiteghost@uhiteghost-HP-ELLteBook-840-G7-Notebook-PC;~/Documents/bltcotn-28.1-x86_64-linux-gnu/bitcotn-28.1/bin$
-whiteghost@whiteghost-MP-ElLteBook-840-G7-Notebook-PC:~/Documents/bltcotn-28.1-x86_64-Ltnux-gnu/bttcotn-28.1/bin$
-error code: •18
-•/bitcoin-cli getnewaddress
-error nessage:
-No wallet Is loaded. Load a wallet using loadwallet or create a new one with createwallet. (Note: A default wallet is no longer automatically created) 
-whtteghost@uhiteghost-HP-EliteBook-840-G7-Notebook-PC:~/Docunents/bitcoin-28.1-x86_64-ltnux-gnu/bttcotn-28.1/bin$ •/bitcotn-clt createwallet "khalidbtc*
-"nane": "khalidbte"
-whiteghost@whiteghost-HP-EliteBook-840-G7-Notebook-PC:~/Documents/bttcoln-28.1-x86_64-11nux-gnu/bitcoin-28.1/bin$ •/bltcoln-cli getnewaddress
-bert1q64nk@kaccaz@ys8kc7nhws2305ใบSznycsogy
-hiteghost@hiteghost-HP-El1teBook-840-G7-Notebook-PC:-/Documents/bttcotn-28.1-x86_64-l1nux-gnu/bttcotn-28.1/btn$ •/bitcoln-cl • generate 101
-"address": "bcrt1qpf75vhptfpjprdzs6s6xw3zyp6nc\rph4z7tnq",
-"blocks": [
-*547fb1f5dd3ef8525a8C763c1f10fc5bd64cd867aa98CCS77f59a2d8c3fSbbea"
--272714693776225247522e34b68d40b57085761558a086078b004ed22b722340*:
-3550c254524968461327634716006746431667591582131726
-BANG 6 OLUFSEA
-insert]
+```
+
+### Step 2
+
+#### Step 2a
+
+Generated 101 blocks to new Address
+
+![alt text](<Step-2a.png>)
+
+#### Step 2b
+
+Verified the BlockCount
+
+![alt text](<Step-2b.png>)
+
+### Step 3
+
+#### Step 3a
+
+Got the blockhash
+
+![alt text](<Step-3a.png>)
+
+#### Step 3b
+
+Get the best block hash
+
+![alt text](Step-3b.png)
+
+#### Step 3c
+
+Get a specific block using a blockhash
+
+![alt text](Step-3c.png)
+
+#### Step 3d
+
+Get a specific blockheader using the blockhash
+![alt text](Step-3d.png)
+
+### Step 4
+
+#### Step 4a
+
+Generate new wallets
+
+![alt text](Step-4a.png)
+
+#### Step 4b
+
+Generate new addresses
+
+![alt text](Step-4b.png)
+
+#### Step 4c
+
+List them all
+
+![alt text](Step-4c.png)
+
+#### Step 5a
+
+Send Transactions
+
+Cannot send funds in regtest without mining blocks first so the fee can be calculated.
+So the first step is to fund the wallet, mine blocks to estimate the fee then send bitcoin to the address
+This has been done previously so I will move onto the process of sending transactions to the address of my choice
+
+![alt text](Step-5a.png)
+
+Transaction id was displayed
+
+#### Step 5b
+
+Track Transactions
+
+![alt text](Step-5b.png)
+
+#### Step 6
+
+Tried to listunspent but got an empty slate
+I realized the listunspent shows UTXOs with at least one confirmation
+So I decided to mine a block. This will make the previous transaction move off the mempool so it will be included into a mined block
+
+![alt text](Step-6.png)
+
+#### Step 6a
+
+Now if I check with listunspent, it should work
+Here are the transaction details txid, vout, and amount
+![alt text](Step-6a.png)
+
+### Step 7
+
+Get raw transaction
+To get raw transaction, blockhash has to be gotten also.
+So I generated it by using listunspent
+
+Then I used the gettransaction command to get the blockhash
+
+./bitcoin-cli -regtest -rpcwallet="testwallet" gettransaction TX-ID
+
+The blockhash will also be generated in the Output
+
+#### Step 7a
+
+Getting the actual raw transaction
+
+![alt text](Step7a-v1.png)
+![alt text](Step7a-v2.png)
+
+### Step 8
+
+Simulate payment flow
+
+#### Step 8a
+
+Create sender wallet and receiver wallet
+
+![alt text](Step-8a.png)
+
+Create addresses for both sender and receiver wallets
+
+![alt text](Step-8b.png)
+
+#### Step 8c
+
+Send BTC from sender to receiver
+Got the error of insufficient funds so had to mine blockd greater than 100 first to the sender address so there will be BTC sent to it
+
+Now I can send BTC from sender to receiver address
+
+![alt text](Step-8c.png)
+
+#### Step 8d
+
+Confirm the transaction by mining a block Confirm the transaction by mining a block
+
+![alt text](Step-8d.png)
